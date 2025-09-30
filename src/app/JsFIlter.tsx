@@ -14,6 +14,7 @@ const JsFIlter:FC<FilterProps> =(props)=>{
             <FilterButton name={'필터'} onClick={toggle}/>
             {isOpen && (
                 <Modal
+
                     style={props.style?.container}
                     className={props.className?.container}
                 />
