@@ -3,6 +3,11 @@ import {CSSProperties} from "react";
 export type FilterProps = {
     style?: Style;
     className?: ClassName;
+    data?: DataSet;
+    setData?: (listener?: () => void) => void;
+    conditions?:Condition[];
+    initialValues?: ValueType| undefined;
+    onValueChange?: (value: ValueType | undefined) => void;
 }
 
 type Style={
@@ -27,13 +32,59 @@ export type ObjectType = {
 export type ValueType = {
     [key: string]: string | number | number[] | string[] | undefined | ObjectType ;
 }
+export type Data = {
+    id: number;
+    name: string;
+    parentId?: number;
+    children?: Data[];
+}
+
+export type DataSet ={
+    content?: Data[];
+    pageable?: Page;
+    totalElements?: number;
+    totalPages?: number;
+    children?:any[];
+    listener?:(v:any)=>void;
+}
+type Page = {
+    pageNumber?: number;
+    size?: number;
+    sort?: string[];
+    desc?: string;
+}
 export type ModalProps = {
     close?: () => void;
-    values?: ValueType | null;
-    handle?: (key: string , val: any, type?: 'only' | 'date') => void;
-    remove?: (key: string, val: any, type?: 'only' | 'date') => void;
+    clicked?:Condition;
+    setClicked?: (click: Condition) => void;
+    conditions?:Condition[];
+    data?: DataSet;
+    setData?:(listener?: () => void) => void;
+    values?: ValueType | undefined;
+    handle?: (key: string , val: any, type?: Type) => void;
     reset?: () => void;
-    onSearch?: (values: ValueType | null) => void;
     style?:CSSProperties;
     className?:string;
+    onSearch?: (values: ValueType | undefined) => void;
 };
+export type Condition = {
+    key: string;
+    label: string;
+    type?: 'DATE' | 'TEXT' | 'CODE' | 'RECURSIVE';
+    vessel?:Type;
+    listener?: () => void;
+    target?:Target[];
+}
+
+export type Target={
+    key: string,
+    name: string,
+}
+
+export type SearchProps ={
+    data?:DataSet
+    values?: ValueType | undefined;
+    clicked?:Condition;
+    handle?: (key: string , val: any, type?:Type) => void;
+}
+export type Type ='TEXT' | 'DATE' | 'ARRAY'| undefined

@@ -2,4 +2,42 @@ html, body {
   height: 100%;
   margin: 0;
   font-size: 12px;
+  box-sizing: border-box;
+}
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+.js-filter-input-focus:focus{
+  outline: 2px solid #0d99ff;
+}
+.js-filter-options{
+  border-left: 2px solid transparent;
+}
+.js-filter-dataset-hover:hover{
+  background: rgba(238, 238, 238, 0.89);
+}
+.js-filter-dataset-hover:active{
+  background: rgba(225, 225, 225, 0.94);
+}
+
+.js-filter-options.has-count::after {
+  content: attr(data-count);
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 10px;
+  text-align: center;
+  background: #cbcbcb;
+  color: black !important;
+  border-radius: 50%;
+  margin-left: 0.5rem;
+}
+.js-filter-option-clicked{
+  background: #CFE1FD !important;
+  border-left: 2px solid #0086de;
+  color: #0086de;
+}
+.js-filter-option-clicked:active{
+  background: #b3c7e7 !important;
 }

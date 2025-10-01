@@ -1,6 +1,6 @@
-import FilterIcon from "./svg/FilterIcon";
+import FilterIcon from "../svg/FilterIcon";
 import {FC} from "react";
-import {FilterButtonProps} from "../type/Types";
+import {FilterButtonProps} from "../../type/Types";
 
 const FilterButton:FC<FilterButtonProps> =(props)=>{
     return (
