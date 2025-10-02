@@ -2,7 +2,6 @@ import {FC} from "react";
 import {SearchProps} from "../../type/Types";
 
 const RecursiveFinder:FC<SearchProps> = (props)=>{
-    console.log(props.data)
     return (
         <div
             className={`js-filter-righter`}

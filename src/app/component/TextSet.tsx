@@ -1,7 +1,7 @@
 import {Condition, DataSet, SearchProps, Target, ValueType} from "../type/Types";
 import {FC, useState, useEffect} from "react";
 
-const TextInFinder: FC<SearchProps> = (props) => {
+const TextSet: FC<SearchProps> = (props) => {
     const [checkedItems, setCheckedItems] = useState<Target[]>([]);
 
     // 첫 번째 요소를 기본 체크
@@ -103,4 +103,4 @@ const TextInFinder: FC<SearchProps> = (props) => {
         </div>
     );
 };
-export default TextInFinder;
+export default TextSet;

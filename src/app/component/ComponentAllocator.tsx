@@ -1,7 +1,7 @@
 import Dataset from "./Dataset";
 import {FC} from "react";
 import {ModalProps} from "../type/Types";
-import TextInFinder from "./TextInFinder";
+import TextSet from "./TextSet";
 import RecursiveFinder from "./utils/RecursiveFinder";
 
 
@@ -14,7 +14,7 @@ const ComponentAllocator:FC<ModalProps> =(props)=>{
                 <Dataset data={props.data} handle={props.handle} values={props.values} clicked={props.clicked}/>
             }
             {type ==='TEXT' &&
-                <TextInFinder data={props.data} handle={props.handle} values={props.values} clicked={props.clicked}/>
+                <TextSet data={props.data} handle={props.handle} values={props.values} clicked={props.clicked}/>
             }
             { type==='RECURSIVE' &&
                 <RecursiveFinder data={props.data} handle={props.handle} values={props.values} clicked={props.clicked}/>
