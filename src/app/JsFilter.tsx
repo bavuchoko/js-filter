@@ -1,6 +1,7 @@
 import {FC, useState} from "react";
 import {Condition, FilterProps} from "./type/Types";
 import '../index.css';
+import '../calendar.css';
 import FilterButton from "./component/utils/FilterButton";
 import {useToggleModal} from "./hook/useToggleModal";
 import Modal from "./component/utils/Modal";
