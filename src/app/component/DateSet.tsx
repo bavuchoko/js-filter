@@ -1,7 +1,9 @@
 import {FC, useState} from "react";
 import {SearchProps} from "../type/Types";
 import {generateCalendar} from "../hook/useCalendar";
-
+import ChevronRight from "./svg/ChevronRight";
+import ChevronLeft from "./svg/ChevronLeft";
+import "../../calendar.css"
 
 const DateSet:FC<SearchProps> =(props)=>{
     const now = new Date();
@@ -37,18 +39,16 @@ const DateSet:FC<SearchProps> =(props)=>{
         <>
             <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding:'0 2rem', width:'340px',}}>
                 <div className="js-datepicker-calendar-header">
-                    {/*<FontAwesomeIcon*/}
-                    {/*    icon={['fas', 'arrow-left']}*/}
-                    {/*    className={``}*/}
-                    {/*    onClick={() => {*/}
-                    {/*        if (calendarType === 'MONTH') {*/}
-                    {/*            setViewYear((y) => y - 1);*/}
-                    {/*        } else {*/}
-                    {/*            setViewMonth((m) => (m === 0 ? 11 : m - 1));*/}
-                    {/*            setViewYear((y) => (viewMonth === 0 ? y - 1 : y));*/}
-                    {/*        }*/}
-                    {/*    }}*/}
-                    {/*/>*/}
+                    <ChevronLeft
+                        onClick={() => {
+                            if (calendarType === 'MONTH') {
+                                setViewYear((y) => y + 1);
+                            } else {
+                                setViewMonth((m) => (m === 11 ? 0 : m + 1));
+                                setViewYear((y) => (viewMonth === 11 ? y + 1 : y));
+                            }
+                        }}
+                    />
                     <span className="js-datepicker-calendar-month"
                           onClick={() => setCalendarType('MONTH')}
                     >
@@ -56,18 +56,16 @@ const DateSet:FC<SearchProps> =(props)=>{
                         {calendarType ==='DATE' && <> {months[lang][viewMonth]} {viewYear} </> }
 
                 </span>
-                    {/*<FontAwesomeIcon*/}
-                    {/*    icon={['fas', 'arrow-right']}*/}
-                    {/*    className={``}*/}
-                    {/*    onClick={() => {*/}
-                    {/*        if (calendarType === 'MONTH') {*/}
-                    {/*            setViewYear((y) => y + 1);*/}
-                    {/*        } else {*/}
-                    {/*            setViewMonth((m) => (m === 11 ? 0 : m + 1));*/}
-                    {/*            setViewYear((y) => (viewMonth === 11 ? y + 1 : y));*/}
-                    {/*        }*/}
-                    {/*    }}*/}
-                    {/*/>*/}
+                    <ChevronRight
+                            onClick={() => {
+                                if (calendarType === 'MONTH') {
+                                    setViewYear((y) => y + 1);
+                                } else {
+                                    setViewMonth((m) => (m === 11 ? 0 : m + 1));
+                                    setViewYear((y) => (viewMonth === 11 ? y + 1 : y));
+                                }
+                            }}
+                    />
                 </div>
                 {calendarType ==='DATE' &&
                     <>
