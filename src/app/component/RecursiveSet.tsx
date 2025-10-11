@@ -3,7 +3,7 @@ import {SearchProps} from "../type/Types";
 import {findAllParents, flattenTree} from "../hook/useFilterHandle";
 import FinderSub from "./FinderSub";
 
-const RecursiveFinder:FC<SearchProps> = (props)=>{
+const RecursiveSet:FC<SearchProps> = (props)=>{
     const [clickLine, setClickLine] =useState<number[] | undefined>(undefined)
     const [left, setLeft] =useState<any[] | undefined>(undefined)
     const [center, setCenter] =useState<any[] | undefined>(undefined)
@@ -130,4 +130,4 @@ const RecursiveFinder:FC<SearchProps> = (props)=>{
         </div>
     )
 }
-export default RecursiveFinder;
+export default RecursiveSet;
