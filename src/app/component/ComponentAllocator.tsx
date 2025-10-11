@@ -2,7 +2,7 @@ import Dataset from "./Dataset";
 import {FC} from "react";
 import {ModalProps} from "../type/Types";
 import TextInFinder from "./TextInFinder";
-import RecursiveFinder from "./utils/RecursiveFinder";
+import RecursiveFinder from "./RecursiveFinder";
 
 
 const ComponentAllocator:FC<ModalProps> =(props)=>{

@@ -183,3 +183,38 @@ export const useFilterHandle = (onValueChange?: (value: ValueType | undefined) =
         reset,
     };
 };
+
+
+export function flattenTree(nodes: any[] | undefined): any[] {
+    const result: any[] = [];
+
+    function recurse(list: any[]|undefined) {
+        if(list) {
+            for (const node of list) {
+                result.push(node);
+                if (node.children) {
+                    recurse(node.children);
+                }
+            }
+        }
+    }
+
+    recurse(nodes);
+    return result;
+}
+
+export function findAllParents(flat: any[] | undefined, nodeId: number | string): number[] {
+    const parents: number[] = [];
+    let current = flat?.find(n => n.id === nodeId);
+    while (current && current.parentId) {
+        const parent = flat?.find(n => n.id === current.parentId);
+        if (parent) {
+            parents.push(parent.id);
+            current = parent;
+        } else {
+            break;
+        }
+    }
+
+    return parents;
+}
