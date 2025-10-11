@@ -67,7 +67,7 @@ const Dataset:FC<SearchProps> =(props)=>{
                                  }}
                                 onClick={()=>handleClick(e.id)}
                             >
-                                <input type={'checkbox'} style={{marginRight:'1rem'}} checked={isChecked}/>
+                                <input type={'checkbox'} style={{marginRight:'1rem'}} checked={isChecked} readOnly/>
                                 <p style={{margin:'0', fontSize:'14px'}}>{e.name}</p>
                             </li>
                         )

@@ -1,5 +1,6 @@
 import {FC} from "react";
 import ChevronDown from "./svg/ChevronDown";
+import ChevronRight from "./svg/ChevronRight";
 
 
 type FinderSubProps = {
@@ -23,7 +24,7 @@ const FinderSub:FC<FinderSubProps> =(props)=>{
             } }>
                 {props.el.children ?
                     <div style={{width: '15px', height: '15px', display: 'inline-block', marginRight: '5px'}}>
-                        <ChevronDown />
+                        <ChevronRight />
                     </div>
                     :
                     <div style={{width: '15px', height: '15px', display: 'inline-block', marginRight: '5px'}}/>

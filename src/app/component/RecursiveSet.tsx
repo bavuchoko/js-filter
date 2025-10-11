@@ -110,23 +110,50 @@ const RecursiveSet:FC<SearchProps> = (props)=>{
     return (
         <div
             className={`js-filter-righter`}
-            style={{ padding: "0 2rem", width: "340px"}}
+            style={{ padding: "0 2rem", display: "grid",
+                gridTemplateColumns: "repeat(3, minmax(0, 1fr))",}}
         >
-            {left?.map((el: any)=>{
-                return(
-                    <FinderSub el={el} belong={clickLine?.includes(el.id) } onClick={fistHandler} handle={(v:any)=>clickHandler(v)} />
-                )
-            })}
-            {center && center?.map((el:any)=>{
-                return(
-                    <FinderSub el={el} belong={clickLine?.includes(el.id)} onClick={secondHandler}   handle={(v:any)=>clickHandler(v)} />
-                )
-            })}
-            {right && right?.map((el:any)=>{
-                return(
-                    <FinderSub el={el} onClick={thirdHandler}   handle={(v:any)=>clickHandler(v)} />
-                )
-            })}
+            <div style={{
+                width:'180px',
+                height: '100%',
+                overflow: 'auto',
+                borderRight:'1px solid rgb(225, 225, 225)'
+            }}
+            >
+                {left?.map((el: any) => {
+                    return (
+                        <FinderSub el={el} belong={clickLine?.includes(el.id)} onClick={fistHandler}
+                                   handle={(v: any) => clickHandler(v)}/>
+                    )
+                })}
+            </div>
+            <div style={{
+                width: '180px',
+                height: '100%',
+                overflow: 'auto',
+                borderRight:'1px solid rgb(225, 225, 225)'
+            }}
+            >
+                {center && center?.map((el: any) => {
+                    return (
+                        <FinderSub el={el} belong={clickLine?.includes(el.id)} onClick={secondHandler}
+                                   handle={(v: any) => clickHandler(v)}/>
+                    )
+                })}
+            </div>
+            <div style={{
+                width: '180px',
+                height: '100%',
+                overflow: 'auto',
+                borderRight:'1px solid rgb(225, 225, 225)'
+            }}
+            >
+                {right && right?.map((el: any) => {
+                    return (
+                        <FinderSub el={el} onClick={thirdHandler} handle={(v: any) => clickHandler(v)}/>
+                    )
+                })}
+            </div>
         </div>
     )
 }
