@@ -1,0 +1,172 @@
+input[type="date"].js-datepicker-input{
+    display: none;
+}
+.js-datepicker{
+    user-select: none;
+    background: #eaecee;
+    padding: 0 5px;
+    position: relative;
+    display: flex;
+    border: 2px solid transparent;
+    align-items: center;
+    width: 140px;
+    height: 25px;
+    text-indent: 5px;
+    border-radius: 6px;
+    line-height: 30px;
+    font-size: 12px;
+    color: #7a7979;
+}
+
+.js-datepicker:focus {
+    border: 2px solid #0d99ff;
+}
+.js-datepicker-calendar-icon{
+    font-size: 14px;
+    color: #007ac0;
+}
+.js-datepicker-calendar{
+    background: #fff;
+    user-select: none;
+    padding:5px;
+    margin-top: 5px;
+    z-index: 100;
+}
+.js-datepicker-calendar-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 10px 20px;
+}
+.js-datepicker-month-picker{
+    font-size: 13px;
+    padding: 4px;
+}
+.js-datepicker-month-picker > div.months {
+    text-align: center;
+    width: 80px;
+    padding: 4px 0;
+    margin: 6px 1px;
+}
+.js-datepicker-month-picker > div.months:hover{
+    border-radius: 6px;
+    background: #eaecee;
+}
+.js-datepicker-calendar-month{
+    font-size: 14px;
+    font-weight: 500;
+}
+.js-datepicker-calendar-days{
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0;
+    font-size: 12px;
+    font-weight: 500;
+    color: #656565;
+}
+.js-datepicker-calendar-date{
+    font-size: 12px;
+    margin: 3px 5px;
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 3px 5px;
+}
+.js-datepicker-calendar-date:hover{
+    background: #e5e5e5;
+}
+.js-datepicker-selected{
+    background: #177bd7 !important;
+    color: #fff;
+}
+.js-datepicker-sunday{
+    color: #da0b0b;
+}
+.js-datepicker-saturday{
+    color: #2955ad;
+}
+.js-datepicker-body{
+    display: flex;
+}
+.js-datepicker-period-calendars {
+    display: flex;
+    gap: 16px;
+    position: relative; /* 부모 기준 */
+}
+
+.js-datepicker-period-calendars .js-datepicker-calendar {
+    position: static; /* 겹치지 않도록 */
+}
+.js-datepicker-buttons{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 6px;
+    padding-right: 6px;
+    margin-bottom: 10px;
+    background: white;
+    color: #007ac0;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: default;
+}
+
+.js-datepicker-buttons > div {
+    border-radius: 6px;
+    padding: 2px 8px;
+
+}
+.js-datepicker-display {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+}
+.js-datepicker-buttons > div:hover{
+
+    background: #e5e5e5 !important;
+}
+.js-datepicker-buttons:has(> div:only-child) {
+    justify-content: center;
+}
+
+.js-datepicker-today{
+    background: #deebfd !important;
+}
+.js-datepicker-marked {
+    position: relative;
+}
+.js-datepicker-marked::before {
+    content: "⯌";
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    font-weight: bold;
+    color: #d22b1c;
+}
+.js-datepicker-body-container{
+    display: flex;
+}
+.no-scroll::-webkit-scrollbar {
+    display: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.js-datepicker-timer{
+    padding: 4px;
+    border: 1px solid #eaecee;
+    overflow: scroll;
+    margin-left: 5px;
+}
+.js-datepicker-timer-box{
+    width: 35px;
+    text-align: center;
+    cursor: default;
+    font-size: 20px;
+}
+.js-datepicker-timer-hour:hover{
+    background: #e5e5e5 !important;
+    border-radius: 3px;
+}

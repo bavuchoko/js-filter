@@ -35,7 +35,6 @@ export const useFilterHandle = (onValueChange?: (value: ValueType | undefined) =
 
     const handleMulti = useCallback(
         (key: string, val: number) => {
-            console.log("bbbb");
             setValue(prev => {
                 const newState = multiToggle(prev, key, val);
                 if (onValueChange) onValueChange(newState);
@@ -71,21 +70,28 @@ export const useFilterHandle = (onValueChange?: (value: ValueType | undefined) =
     );
 
     const handleText = useCallback(
-        (key: string, val: string) => {
+        (val: ObjectType) => {
             setValue(prev => {
-                let newState: ValueType | undefined;
+                let newState: ValueType | undefined = prev ? { ...prev } : {};
 
-                if (!prev || !(key in prev)) {
-                    newState = { ...(prev ?? {}), [key]: [val] };
-                } else {
-                    const currentVals = Array.isArray(prev[key]) ? (prev[key] as string[]) : [];
-                    if (currentVals.length === 1 && currentVals[0] === val) {
-                        const clone = { ...prev };
-                        delete clone[key];
-                        newState = Object.keys(clone).length === 0 ? undefined : clone;
+                for (const [k, v] of Object.entries(val)) {
+                    if (v === "" || v === undefined) {
+                        if (newState && k in newState) {
+                            delete newState[k];
+                        }
                     } else {
-                        newState = { ...prev, [key]: [val] };
+                        if (typeof v === "string") {
+                            newState = { ...(newState ?? {}), [k]: [v] as string[] };
+                        } else if (typeof v === "number") {
+                            newState = { ...(newState ?? {}), [k]: [v] as number[] };
+                        } else {
+                            newState = { ...(newState ?? {}), [k]: v };
+                        }
                     }
+                }
+
+                if (newState && Object.keys(newState).length === 0) {
+                    newState = undefined;
                 }
 
                 if (onValueChange) onValueChange(newState);
@@ -147,8 +153,8 @@ export const useFilterHandle = (onValueChange?: (value: ValueType | undefined) =
                 handleMulti(key, Number(val));
             } else if (type === 'DATE') {
                 handleDate(key, (val as ObjectType));
-            }else if(type === 'TEXT' && typeof val === 'string'){
-                handleText(key, val);
+            }else if(type === 'TEXT' && typeof val === 'object'){
+                handleText(val);
             }
         },
         [handleSingle, handleMulti, handleDate]
@@ -163,10 +169,9 @@ export const useFilterHandle = (onValueChange?: (value: ValueType | undefined) =
                 handleMulti(key, Number(val));
             } else if (type === 'DATE') {
                 removeDate(key, (val as ObjectType));
-            } else if(type === 'TEXT' && typeof val === 'string'){
-                handleText(key, val);
+            } else if(type === 'TEXT' && typeof val === 'object'){
+                handleText(val);
             }
-
         },
         [handleSingle, handleMulti, handleDate]
     );
