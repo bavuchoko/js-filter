@@ -11,7 +11,7 @@ const ChevronLeft:FC<SvgProps> =(props)=>{
              onClick={props.onClick}
         >
             <rect width="24" height="24" fill="white"/>
-            <path d="M14.5 17L9.5 12L14.5 7" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M14.5 17L9.5 12L14.5 7" stroke="#000000" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
     )
 }

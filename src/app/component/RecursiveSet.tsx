@@ -16,6 +16,7 @@ const RecursiveSet:FC<SearchProps> = (props)=>{
     }, [props.data?.content]);
 
     const fistHandler =(el:any)=>{
+        console.log("aaa")
         if(!clickLine?.includes(el.id)) setRight([])
         const myParents =  findAllParents(flat, el.id);
         setClickLine([...myParents, el.id])
@@ -122,8 +123,8 @@ const RecursiveSet:FC<SearchProps> = (props)=>{
             >
                 {left?.map((el: any) => {
                     return (
-                        <FinderSub el={el} belong={clickLine?.includes(el.id)} onClick={fistHandler}
-                                   handle={(v: any) => clickHandler(v)}/>
+                        <FinderSub key={el.id} el={el} belong={clickLine?.includes(el.id)} doubleClick={fistHandler}
+                                   onClick={(v: any) => clickHandler(v)}/>
                     )
                 })}
             </div>
@@ -131,13 +132,14 @@ const RecursiveSet:FC<SearchProps> = (props)=>{
                 width: '180px',
                 height: '100%',
                 overflow: 'auto',
-                borderRight:'1px solid rgb(225, 225, 225)'
+                borderRight:'1px solid rgb(225, 225, 225)',
+
             }}
             >
                 {center && center?.map((el: any) => {
                     return (
-                        <FinderSub el={el} belong={clickLine?.includes(el.id)} onClick={secondHandler}
-                                   handle={(v: any) => clickHandler(v)}/>
+                        <FinderSub key={el.id} el={el} belong={clickLine?.includes(el.id)} doubleClick={secondHandler}
+                                   onClick={(v: any) => clickHandler(v)}/>
                     )
                 })}
             </div>
@@ -150,7 +152,7 @@ const RecursiveSet:FC<SearchProps> = (props)=>{
             >
                 {right && right?.map((el: any) => {
                     return (
-                        <FinderSub el={el} onClick={thirdHandler} handle={(v: any) => clickHandler(v)}/>
+                        <FinderSub key={el.id} el={el} doubleClick={thirdHandler} onClick={(v: any) => clickHandler(v)}/>
                     )
                 })}
             </div>
