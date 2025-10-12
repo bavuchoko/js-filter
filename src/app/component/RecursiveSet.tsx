@@ -101,11 +101,7 @@ const RecursiveSet:FC<SearchProps> = (props)=>{
 
 
     const clickHandler =(v:any)=>{
-        const query ={
-            key: props.clicked?.key,
-            id: v.id
-        }
-        // props.clicked?.data?.listener?.(query)
+        if(props.clicked)  props.handle?.(props.clicked?.key , v, props.clicked.vessel)
     }
 
     return (

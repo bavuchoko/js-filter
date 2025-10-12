@@ -14,7 +14,7 @@ type FinderSubProps = {
 
 const FinderSub:FC<FinderSubProps> =(props)=>{
     const { handlePointerUp } = usePointerClick({
-        onSingleClick: () => props.onClick?.(props.el),
+        onSingleClick: () => props.onClick?.(props.el.id),
         onDoubleClick: () => props.doubleClick?.(props.el),
         delay: 250,
     });
