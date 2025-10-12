@@ -30,7 +30,9 @@ const FinderSub:FC<FinderSubProps> =(props)=>{
         }} className={'no-drag'}>
             <div style={{cursor: 'pointer'}} className={`hover-circle`}>
                 {props.el.children ?
-                    <div style={{width: '15px', height: '15px', display: 'inline-block', marginRight: '5px'}}>
+                    <div style={{width: '15px', height: '15px', display: 'inline-block', marginRight: '5px'}} onClick={() => {
+                        props.doubleClick?.(props.el)
+                    }}>
                         <ChevronRight />
                     </div>
                     :
