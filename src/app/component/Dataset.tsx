@@ -82,15 +82,29 @@ const Dataset:FC<SearchProps> =(props)=>{
                                 onClick={()=>handleClick(e.id)}
                             >
                                 <input type={'checkbox'} style={{marginRight:'1rem'}} checked={isChecked} readOnly/>
-                                <p style={{margin:'0', fontSize:'14px'}}>
-                                    {e.name}
+                                <p style={{ margin: '0', fontSize: '14px', display: 'flex', alignItems: 'center' }}>
+                                    <span style={{
+                                        width: '80px',
+                                        display: 'inline-block',
+                                        overflow: 'hidden',
+                                        whiteSpace: 'nowrap',
+                                        textOverflow: 'ellipsis',
+                                    }} title={e.name}>{e.name}</span>
                                     {props.clicked?.labels && props.clicked?.labels.length > 0 &&
-                                        <span style={{marginLeft: '2rem', fontSize: '12px', color: '#666'}}>
+                                        <span style={{ fontSize: '12px', color: '#666', display: 'flex', gap: '10px' }}>
                                             {props.clicked.labels.map((path, i) => {
                                                 const val = getNestedValue(e, path);
+                                                const text = val !== undefined && val !== null ? val.toString() : '-';
                                                 return (
-                                                    <span key={i} style={{marginRight:'10px'}}>
-                                                        {val !== undefined && val !== null ? val.toString() : '-'}
+                                                    <span style={{
+                                                        width: '70px',
+                                                        display: 'inline-block',
+                                                        overflow: 'hidden',
+                                                        whiteSpace: 'nowrap',
+                                                        textOverflow: 'ellipsis',
+                                                    }}
+                                                          title={text}>
+                                                            {text}
                                                     </span>
                                                 );
                                             })}
