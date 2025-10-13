@@ -72,8 +72,8 @@ export type ModalProps = {
 export type Condition = {
     key: string;
     label: string;
-    type?: 'DATE' | 'TEXT' | 'CODE' | 'RECURSIVE' | undefined;
-    vessel?:Type;
+    type?: Type;
+    multiple?:boolean;
     api?:  () => Promise<DataSet>;
     target?:Target[];
 }
@@ -87,7 +87,7 @@ export type SearchProps ={
     data?:DataSet
     values?: ValueType | undefined;
     clicked?:Condition;
-    handle?: (key: string , val: any, type?:Type) => void;
+    handle?: (key: string , val: any, type?:Type, multiple?:boolean) => void;
     setMessage?:(message: string) => void;
 }
-export type Type = 'TEXT' | 'DATE' | 'ARRAY'| undefined
+export type Type =  'DATE' | 'TEXT' | 'CODE' | 'RECURSIVE' | undefined;

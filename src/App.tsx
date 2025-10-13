@@ -90,8 +90,8 @@ function App() {
 
 
     const conditions:Condition[] =[
-        {key:'creator', label:'등록자', vessel:'ARRAY', api: fetchUser },
-        {key:'searchTxt', label:'검색어', type:'TEXT', vessel:'TEXT', target:[{key:'title', name:'제목'},{key:'number', name:'번호'}]},
+        {key:'creator', label:'등록자', multiple: true, api: fetchUser },
+        {key:'searchTxt', label:'검색어', type:'TEXT', target:[{key:'title', name:'제목'},{key:'number', name:'번호'}]},
         {key:'updater', label:'수정자',  api: fetchUser },
         {key:'createdAt', label:'등록일', type:'DATE', },
         {key:'department', label:'부서', type: 'RECURSIVE', api: fetchDept},

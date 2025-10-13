@@ -7,7 +7,7 @@ const Dataset:FC<SearchProps> =(props)=>{
     const [searchText, setSearchText] = useState('');
 
     const handleClick =(id:number)=>{
-        if(props.clicked) props.handle?.(props.clicked?.key , id, props.clicked.vessel)
+        if(props.clicked) props.handle?.(props.clicked?.key , id, props.clicked.type, props.clicked.multiple)
     }
 
     const val = props.values?.[props.clicked?.key ?? ''];

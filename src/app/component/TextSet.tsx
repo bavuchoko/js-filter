@@ -50,7 +50,7 @@ const TextSet: FC<SearchProps> = ({ clicked, values, handle }) => {
                 }
             });
 
-            handle?.("key", obj, clicked?.vessel);
+            handle?.("key", obj, clicked?.type);
         },
         [clicked, handle]
     );

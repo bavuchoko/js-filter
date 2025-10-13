@@ -147,11 +147,10 @@ export const useFilterHandle = (onValueChange?: (value: ValueType | undefined) =
     );
 
     const handle = useCallback(
-        (key: string , val: number | string | ObjectType | undefined, type?: Type) => {
+        (key: string , val: number | string | ObjectType | undefined, type?: Type, multiple? :boolean) => {
             if (type === undefined ) {
-                handleSingle(key, Number(val));
-            } else if (type === 'ARRAY') {
-                handleMulti(key, Number(val));
+                if(multiple) {handleMulti(key, Number(val));
+                }else{handleSingle(key, Number(val));}
             } else if (type === 'DATE') {
                 handleDate(key, (val as ObjectType));
             }else if(type === 'TEXT' && typeof val === 'object'){
@@ -163,11 +162,10 @@ export const useFilterHandle = (onValueChange?: (value: ValueType | undefined) =
 
 
     const remove = useCallback(
-        (key: string , val: number | string | ObjectType | undefined, type?:Type) => {
+        (key: string , val: number | string | ObjectType | undefined, type?:Type, multiple? :boolean) => {
             if (type === undefined) {
-                handleSingle(key, Number(val));
-            } else if (type === 'ARRAY') {
-                handleMulti(key, Number(val));
+                if(multiple) {handleMulti(key, Number(val));
+                }else{handleSingle(key, Number(val));}
             } else if (type === 'DATE') {
                 removeDate(key, (val as ObjectType));
             } else if(type === 'TEXT' && typeof val === 'object'){
