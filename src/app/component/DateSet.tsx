@@ -52,9 +52,19 @@ const DateSet:FC<SearchProps> =(props)=>{
     const lang ='kr'
 
     const handleSelect = (date: Date | undefined) => {
-        console.log(props.clicked?.type)
-        setValue?.(date);
-        if(props.clicked)  props.handle?.(props.clicked?.key , date, 'DATE')
+        if (!props.clicked) return;
+
+        const isSame =
+            value && date && value.toDateString() === date.toDateString();
+
+        //토글
+        if (isSame) {
+            setValue(undefined);
+            props.handle?.(props.clicked.key, undefined, 'DATE');
+        } else {
+            setValue(date);
+            props.handle?.(props.clicked.key, date, 'DATE');
+        }
     };
 
 
