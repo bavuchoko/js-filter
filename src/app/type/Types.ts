@@ -4,7 +4,6 @@ export type FilterProps = {
     style?: Style;
     className?: ClassName;
     data?: DataSet;
-    setData?: (listener?: () => void) => void;
     conditions?:Condition[];
     initialValues?: ValueType| undefined;
     onValueChange?: (value: ValueType | undefined) => void;
@@ -68,13 +67,14 @@ export type ModalProps = {
     onSearch?: (values: ValueType | undefined) => void;
     message?: string;
     setMessage?:Dispatch<SetStateAction<string | undefined>>
+    loading?: boolean;
 };
 export type Condition = {
     key: string;
     label: string;
     type?: 'DATE' | 'TEXT' | 'CODE' | 'RECURSIVE';
     vessel?:Type;
-    listener?: () => void;
+    api?:  () => Promise<DataSet>;
     target?:Target[];
 }
 

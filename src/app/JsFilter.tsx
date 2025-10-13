@@ -1,5 +1,5 @@
-import {FC, useState} from "react";
-import {Condition, FilterProps} from "./type/Types";
+import {FC, useEffect, useState} from "react";
+import {Condition, DataSet, FilterProps} from "./type/Types";
 import '../index.css';
 import '../calendar.css';
 import FilterButton from "./component/utils/FilterButton";
@@ -13,6 +13,24 @@ const JsFilter:FC<FilterProps> =(props)=>{
     const { values, handle, reset, remove } = useFilterHandle(props.onValueChange, props.initialValues);
     const [clicked, setClicked] = useState<Condition| undefined>(undefined);
     const [message, setMessage] =useState<string | undefined>(undefined)
+    const [data, setData] = useState<DataSet | undefined>(undefined);
+    const [loading, setLoading] = useState<boolean>(false);
+    useEffect(() => {
+        const fetchData = async () => {
+            if (clicked?.api) {
+                try {
+                    setLoading(true)
+                    const result = await clicked.api();
+                    setData(result);
+                    setLoading(false)
+                } catch (err) {
+                    console.error(err);
+                    setMessage("데이터를 불러오지 못했습니다.");
+                }
+            }
+        };
+        fetchData();
+    }, [clicked]);
 
     return (
         <div style={{position:'relative'}}>
@@ -22,8 +40,8 @@ const JsFilter:FC<FilterProps> =(props)=>{
                     values={values}
                     handle={handle}
                     conditions={props.conditions}
-                    data={props.data}
-                    setData={props.setData}
+                    data={data}
+                    loading={loading}
                     style={props.style?.container}
                     className={props.className?.container}
                     clicked={clicked}

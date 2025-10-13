@@ -14,10 +14,11 @@ const Modal: FC<ModalProps> = (props) => {
         }
     }, [props.clicked, props.conditions, props.setClicked]);
 
+
     const OptionHandler =(k:Condition)=>{
         props.setClicked?.(k)
-        props.setData?.(k.listener)
     }
+
 
     return (
         <div style={{

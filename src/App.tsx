@@ -76,22 +76,30 @@ function App() {
     }
     const [test, setTest] = useState<DataSet>(datasetUser);
 
-    const dataHandler =(listener?: () => void)=>{
-        setTest(datasetDept)
+    const fetchUser = async (): Promise<DataSet> => {
+        return new Promise((resolve) => {
+            setTimeout(() => resolve(datasetUser), 300); // 실제 axios 호출 가능
+        });
+    };
 
-    }
+    const fetchDept = async (): Promise<DataSet> => {
+        return new Promise((resolve) => {
+            setTimeout(() => resolve(datasetDept), 300);
+        });
+    };
+
 
     const conditions:Condition[] =[
+        {key:'creator', label:'등록자', vessel:'ARRAY', api: fetchUser },
         {key:'searchTxt', label:'검색어', type:'TEXT', vessel:'TEXT', target:[{key:'title', name:'제목'},{key:'number', name:'번호'}]},
-        {key:'creator', label:'등록자', vessel:'ARRAY', },
-        {key:'updater', label:'수정자', },
+        {key:'updater', label:'수정자',  api: fetchUser },
         {key:'createdAt', label:'등록일', type:'DATE', },
-        {key:'department', label:'부서', type: 'RECURSIVE'},
+        {key:'department', label:'부서', type: 'RECURSIVE', api: fetchDept},
     ]
 
   return (
     <div className="App" style={{padding:'20px'}}>
-      <JsFilter data={test} setData={(l)=>dataHandler(l)} conditions={conditions} onValueChange={k=>console.log(k)} />
+      <JsFilter conditions={conditions} onValueChange={k=>console.log(k)} />
     </div>
   );
 }

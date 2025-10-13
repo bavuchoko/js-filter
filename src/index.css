@@ -44,3 +44,17 @@ html, body {
 .js-filter-option-clicked:active{
   background: #b3c7e7 !important;
 }
+.js-filter-spinner {
+  margin: 0 auto 0.5rem;
+  width: 100px;
+  height: 100px;
+  border: 6px solid #eee;
+  border-top: 6px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

@@ -27,7 +27,7 @@ const FinderSub:FC<FinderSubProps> =(props)=>{
     const { handlePointerUp } = usePointerClick({
         onSingleClick: () => props.onClick?.(props.el.id),
         onDoubleClick: () => props.doubleClick?.(props.el),
-        delay: 250,
+        delay: 200,
     });
 
     return (
@@ -49,7 +49,7 @@ const FinderSub:FC<FinderSubProps> =(props)=>{
                     :
                     <div style={{width: '15px', height: '15px', display: 'inline-block', marginRight: '5px'}}/>
                 }
-                <input type={'checkbox'} style={{marginRight:'1rem'}} checked={isChecked} readOnly/>
+                <input type={'checkbox'} style={{marginRight:'1rem'}} checked={isChecked} onPointerUp={handlePointerUp}/>
             </div>
             <div className={`hover-bg-gray`} style={{
                 width: '100%',
