@@ -1,13 +1,15 @@
 {
   "name": "@bavuchoko/js-filter",
-  "version": "1.0.1",
-  "description": "A customizable React Search Filter component.",
+  "version": "1.0.2",
+  "description": "React Filter component.",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "dist/index.css",
+    "dist/calendar.css"
   ],
   "exports": {
     ".": {
@@ -18,8 +20,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "buildm": "tsc && cp src/index.css dist/index.css",
-    "buildw": "tsc && powershell -Command \"Copy-Item src/index.css dist/index.css\""
+    "buildm": "tsc && cp src/index.css dist/index.css && cp src/calendar.css dist/calendar.css",
+    "buildw": "tsc && powershell -Command \"Copy-Item src/index.css dist/index.css; Copy-Item src/calendar.css dist/calendar.css\""
   },
   "keywords": [
     "react",
@@ -33,6 +35,8 @@
   "author": "bellwater1985",
   "license": "MIT",
   "peerDependencies": {
+    "@fortawesome/free-regular-svg-icons": "^7.0.1",
+    "@fortawesome/react-fontawesome": "^3.0.2",
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0"
   },
@@ -52,9 +56,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "dependencies": {
-    "@fortawesome/free-solid-svg-icons": "^7.1.0",
-    "react-scripts": "^5.0.1"
   }
 }
