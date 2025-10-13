@@ -1,10 +1,12 @@
-import {FC, useEffect} from "react";
+import {FC, useEffect, useState} from "react";
 import {Condition, ModalProps} from "../../type/Types";
 import Options from "./Options";
 import Footer from "./Footer";
 import ComponentAllocator from "../ComponentAllocator";
 
 const Modal: FC<ModalProps> = (props) => {
+
+
 
     useEffect(() => {
         if (!props.clicked && props.conditions?.length && props.setClicked) {
@@ -50,7 +52,7 @@ const Modal: FC<ModalProps> = (props) => {
 
             </div>
 
-            <Footer data={props.values} reset={props.reset} count={props.data?.content?.length}/>
+            <Footer data={props.values} reset={props.reset} count={props.data?.content?.length} message={props.message}/>
 
         </div>
     )

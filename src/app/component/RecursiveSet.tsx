@@ -16,10 +16,10 @@ const RecursiveSet:FC<SearchProps> = (props)=>{
     }, [props.data?.content]);
 
     const fistHandler =(el:any)=>{
-        console.log("aaa")
         if(!clickLine?.includes(el.id)) setRight([])
         const myParents =  findAllParents(flat, el.id);
-        setClickLine([...myParents, el.id])
+        setClickLine([...myParents.map(p => p.id), el.id]);
+        props.setMessage?.([...myParents.map(p => p.name), el.name].join(' > '));
         let parents = []
         let sibling = flat.filter(e => e.parentId === el.parentId)
         if(el.parentId){
@@ -46,7 +46,8 @@ const RecursiveSet:FC<SearchProps> = (props)=>{
 
     const secondHandler =(el:any)=>{
         const myParents =  findAllParents(flat, el.id);
-        setClickLine([...myParents, el.id])
+        setClickLine([...myParents.map(p => p.id), el.id]);
+        props.setMessage?.([...myParents.map(p => p.name), el.name].join(' > '));
         let parents = [];
         let sibling = flat.filter(e => e.parentId === el.parentId)
         let children =el.children ?? [];
@@ -70,7 +71,9 @@ const RecursiveSet:FC<SearchProps> = (props)=>{
 
     const thirdHandler =(el:any)=>{
         const myParents =  findAllParents(flat, el.id);
-        setClickLine([...myParents, el.id])
+        setClickLine([...myParents.map(p => p.id), el.id]);
+        props.setMessage?.([...myParents.map(p => p.name), el.name].join(' > '));
+        console.log(props.setMessage)
         let parents = left ?? [];
         let sibling = center ?? []
         let children = right ?? [];
@@ -90,15 +93,11 @@ const RecursiveSet:FC<SearchProps> = (props)=>{
                 }
             }
         }
-
-
-
     }
 
     useEffect(() => {
         setLeft(props?.data?.content)
     }, [props.data?.content]);
-
 
     const clickHandler =(v:any)=>{
         if(props.clicked)  props.handle?.(props.clicked?.key , v, props.clicked.vessel)
@@ -107,7 +106,7 @@ const RecursiveSet:FC<SearchProps> = (props)=>{
     return (
         <div
             className={`js-filter-righter`}
-            style={{ padding: "0 2rem", display: "grid",
+            style={{ display: "grid",
                 gridTemplateColumns: "repeat(3, minmax(0, 1fr))",}}
         >
             <div style={{
@@ -119,7 +118,7 @@ const RecursiveSet:FC<SearchProps> = (props)=>{
             >
                 {left?.map((el: any) => {
                     return (
-                        <FinderSub key={el.id} el={el} belong={clickLine?.includes(el.id)} doubleClick={fistHandler}
+                        <FinderSub key={el.id} values={props.values} clicked={props.clicked} el={el} belong={clickLine?.includes(el.id)} doubleClick={fistHandler}
                                    onClick={(v: any) => clickHandler(v)}/>
                     )
                 })}
@@ -134,7 +133,7 @@ const RecursiveSet:FC<SearchProps> = (props)=>{
             >
                 {center && center?.map((el: any) => {
                     return (
-                        <FinderSub key={el.id} el={el} belong={clickLine?.includes(el.id)} doubleClick={secondHandler}
+                        <FinderSub key={el.id}  values={props.values} clicked={props.clicked} el={el} belong={clickLine?.includes(el.id)} doubleClick={secondHandler}
                                    onClick={(v: any) => clickHandler(v)}/>
                     )
                 })}
@@ -143,12 +142,11 @@ const RecursiveSet:FC<SearchProps> = (props)=>{
                 width: '180px',
                 height: '100%',
                 overflow: 'auto',
-                borderRight:'1px solid rgb(225, 225, 225)'
             }}
             >
                 {right && right?.map((el: any) => {
                     return (
-                        <FinderSub key={el.id} el={el} doubleClick={thirdHandler} onClick={(v: any) => clickHandler(v)}/>
+                        <FinderSub key={el.id}  values={props.values} clicked={props.clicked} el={el} doubleClick={thirdHandler} onClick={(v: any) => clickHandler(v)}/>
                     )
                 })}
             </div>

@@ -5,6 +5,7 @@ type FooterProps = {
     data?:ValueType;
     reset?: () => void;
     count?: number;
+    message?: string | string[];
 }
 
 const Footer:FC<FooterProps> =(props)=>{
@@ -19,12 +20,13 @@ const Footer:FC<FooterProps> =(props)=>{
             userSelect:'none',
         }}
         >
-            <div >
+            <div style={{width:'180px', marginRight:'18px'}}>
                 {props.data &&
                 <span onClick={props.reset}>지우기</span>
                 }
             </div>
-            <div>총 {props.count} 건</div>
+            <div>{props.message}</div>
+            <div style={{width:'80px', textAlign:'right', marginLeft:'auto'}}>총 {props.count} 건</div>
         </div>
     )
 }

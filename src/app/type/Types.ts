@@ -1,4 +1,4 @@
-import {CSSProperties} from "react";
+import {CSSProperties, Dispatch, SetStateAction} from "react";
 
 export type FilterProps = {
     style?: Style;
@@ -66,6 +66,8 @@ export type ModalProps = {
     style?:CSSProperties;
     className?:string;
     onSearch?: (values: ValueType | undefined) => void;
+    message?: string;
+    setMessage?:Dispatch<SetStateAction<string | undefined>>
 };
 export type Condition = {
     key: string;
@@ -86,5 +88,6 @@ export type SearchProps ={
     values?: ValueType | undefined;
     clicked?:Condition;
     handle?: (key: string , val: any, type?:Type) => void;
+    setMessage?:(message: string) => void;
 }
 export type Type ='TEXT' | 'DATE' | 'ARRAY'| undefined

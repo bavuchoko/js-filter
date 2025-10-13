@@ -208,18 +208,22 @@ export function flattenTree(nodes: any[] | undefined): any[] {
     return result;
 }
 
-export function findAllParents(flat: any[] | undefined, nodeId: number | string): number[] {
-    const parents: number[] = [];
+export function findAllParents(
+    flat: any[] | undefined,
+    nodeId: number | string
+): { id: number | string; name: string }[] {
+    const parents: { id: number | string; name: string }[] = [];
     let current = flat?.find(n => n.id === nodeId);
+
     while (current && current.parentId) {
         const parent = flat?.find(n => n.id === current.parentId);
         if (parent) {
-            parents.push(parent.id);
+            parents.push({ id: parent.id, name: parent.name });
             current = parent;
         } else {
             break;
         }
     }
 
-    return parents;
+    return parents.reverse();
 }

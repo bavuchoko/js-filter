@@ -12,6 +12,8 @@ const JsFilter:FC<FilterProps> =(props)=>{
     const { isOpen, toggle, close } = useToggleModal();
     const { values, handle, reset, remove } = useFilterHandle(props.onValueChange, props.initialValues);
     const [clicked, setClicked] = useState<Condition| undefined>(undefined);
+    const [message, setMessage] =useState<string | undefined>(undefined)
+
     return (
         <div style={{position:'relative'}}>
             <FilterButton name={'필터'} onClick={toggle}/>
@@ -27,6 +29,8 @@ const JsFilter:FC<FilterProps> =(props)=>{
                     clicked={clicked}
                     setClicked={setClicked}
                     reset={reset}
+                    setMessage={setMessage}
+                    message={message}
                 />
             )}
         </div>

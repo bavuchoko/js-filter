@@ -1,5 +1,5 @@
 import Dataset from "./Dataset";
-import {FC} from "react";
+import {FC, useEffect} from "react";
 import {ModalProps} from "../type/Types";
 import TextSet from "./TextSet";
 import DateSet from "./DateSet";
@@ -9,19 +9,22 @@ import RecursiveSet from "./RecursiveSet";
 const ComponentAllocator:FC<ModalProps> =(props)=>{
     const type =  props.clicked?.type
 
+    useEffect(() => {
+        props.setMessage?.(undefined);
+    }, [props.clicked]);
     return(
         <>
             {(props.clicked === undefined || type === undefined || type ==='CODE') &&
-                <Dataset data={props.data} handle={props.handle} values={props.values} clicked={props.clicked}/>
+                <Dataset data={props.data} handle={props.handle} values={props.values} clicked={props.clicked} setMessage={props.setMessage}/>
             }
             {type ==='TEXT' &&
-                <TextSet data={props.data} handle={props.handle} values={props.values} clicked={props.clicked}/>
+                <TextSet data={props.data} handle={props.handle} values={props.values} clicked={props.clicked} setMessage={props.setMessage}/>
             }
             { type==='RECURSIVE' &&
-                <RecursiveSet data={props.data} handle={props.handle} values={props.values} clicked={props.clicked}/>
+                <RecursiveSet data={props.data} handle={props.handle} values={props.values} clicked={props.clicked} setMessage={props.setMessage}/>
             }
             { type==='DATE' &&
-                <DateSet data={props.data} handle={props.handle} values={props.values} clicked={props.clicked}/>
+                <DateSet data={props.data} handle={props.handle} values={props.values} clicked={props.clicked} setMessage={props.setMessage}/>
             }
         </>
     )
