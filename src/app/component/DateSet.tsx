@@ -1,4 +1,4 @@
-import {FC, useState} from "react";
+import {FC, useEffect, useState} from "react";
 import {SearchProps} from "../type/Types";
 import {generateCalendar} from "../hook/useCalendar";
 import ChevronRight from "./svg/ChevronRight";
@@ -10,7 +10,28 @@ const DateSet:FC<SearchProps> =(props)=>{
     const [viewYear, setViewYear] = useState(now.getFullYear());
     const [viewMonth, setViewMonth] = useState(now.getMonth());
     const [calendarType ,setCalendarType] = useState<'DATE'|'MONTH' |'YEAR'>('DATE')
-    const [value, setValue] = useState<Date | undefined>(undefined);
+    const initialValue =
+        props.clicked?.key && props.values?.[props.clicked.key]
+            ? new Date(props.values[props.clicked.key] as string)
+            : undefined;
+
+    const [value, setValue] = useState<Date | undefined>(initialValue);
+
+    // ✅ props.values가 바뀔 때마다 동기화 (부모가 외부에서 업데이트할 수도 있음)
+    useEffect(() => {
+        if (props.clicked?.key) {
+            const newVal = props.values?.[props.clicked.key];
+            if (newVal) {
+                const dateVal = new Date(newVal as string);
+                if (!value || value.toDateString() !== dateVal.toDateString()) {
+                    setValue(dateVal);
+                }
+            } else {
+                setValue(undefined);
+            }
+        }
+    }, [props.values, props.clicked?.key]);
+
     const days = generateCalendar(viewYear, viewMonth);
     const weekdays = {
         en: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
@@ -30,8 +51,10 @@ const DateSet:FC<SearchProps> =(props)=>{
 
     const lang ='kr'
 
-    const handleSelect = (date: Date) => {
+    const handleSelect = (date: Date | undefined) => {
+        console.log(props.clicked?.type)
         setValue?.(date);
+        if(props.clicked)  props.handle?.(props.clicked?.key , date, 'DATE')
     };
 
 
@@ -136,6 +159,9 @@ const DateSet:FC<SearchProps> =(props)=>{
                             </div>
                         ))}
                     </div>
+                }
+                {props.clicked?.key && props.values?.[props.clicked.key] &&
+                    <div style={{height:'30px', width:'20px', marginTop:'auto', cursor:'pointer', fontSize:'13px', color:'#5d5dd3', fontWeight:'bold'}} onClick={()=>handleSelect(undefined)}>clear</div>
                 }
             </div>
         </>

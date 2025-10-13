@@ -72,7 +72,7 @@ export type ModalProps = {
 export type Condition = {
     key: string;
     label: string;
-    type?: 'DATE' | 'TEXT' | 'CODE' | 'RECURSIVE';
+    type?: 'DATE' | 'TEXT' | 'CODE' | 'RECURSIVE' | undefined;
     vessel?:Type;
     api?:  () => Promise<DataSet>;
     target?:Target[];
@@ -90,4 +90,4 @@ export type SearchProps ={
     handle?: (key: string , val: any, type?:Type) => void;
     setMessage?:(message: string) => void;
 }
-export type Type ='TEXT' | 'DATE' | 'ARRAY'| undefined
+export type Type = 'TEXT' | 'DATE' | 'ARRAY'| undefined
