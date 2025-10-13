@@ -5,7 +5,7 @@ import {Condition, DataSet} from "./app/type/Types";
 function App() {
 
     const data= [
-        {id:1, name:'김길동'},
+        {id:1, name:'김길동', memberOf:{department:{name:'NC소프트', grade:{name:'대리'}}}},
         {id:2, name:'박순자'},
         {id:3, name:'임하수'},
         {id:4, name:'황신혜'},
@@ -90,7 +90,7 @@ function App() {
 
 
     const conditions:Condition[] =[
-        {key:'creator', label:'등록자', multiple: true, api: fetchUser },
+        {key:'creator', label:'등록자', multiple: true, api: fetchUser, labels:['memberOf.department.name','memberOf.department.grade.name'], },
         {key:'searchTxt', label:'검색어', type:'TEXT', target:[{key:'title', name:'제목'},{key:'number', name:'번호'}]},
         {key:'updater', label:'수정자',  api: fetchUser },
         {key:'createdAt', label:'등록일', type:'DATE', },

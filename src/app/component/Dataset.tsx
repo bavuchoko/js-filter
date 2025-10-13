@@ -1,5 +1,6 @@
 import {FC, useState} from "react";
 import {Data, SearchProps} from "../type/Types";
+import {getNestedValue} from "../hook/useFilterHandle";
 
 
 const Dataset:FC<SearchProps> =(props)=>{
@@ -14,16 +15,29 @@ const Dataset:FC<SearchProps> =(props)=>{
 
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const text = e.target.value;
+        const text = e.target.value.toLowerCase();
         setSearchText(text);
 
-        if (props.data?.content) {
-            const filtered = props.data.content.filter(d =>
-                d.name.toLowerCase().includes(text.toLowerCase())
-            );
-            setShow(filtered);
-        }
-    }
+        if (!props.data?.content) return;
+
+        const filtered = props.data.content.filter(d => {
+            // ✅ name 필드 검사
+            const inName = d.name?.toLowerCase().includes(text);
+
+            // ✅ labels 필드들 검사
+            const inShow = props.clicked?.labels?.some(path => {
+                const val = getNestedValue(d, path);
+                if (typeof val === 'string') return val.toLowerCase().includes(text);
+                if (typeof val === 'number') return val.toString().includes(text);
+                return false;
+            });
+
+            // ✅ 하나라도 true면 포함
+            return inName || inShow;
+        });
+
+        setShow(filtered);
+    };
 
     return (
         <div className={`js-filter-righter`} style={{padding:'0 2rem', width:'340px',}}>
@@ -68,7 +82,21 @@ const Dataset:FC<SearchProps> =(props)=>{
                                 onClick={()=>handleClick(e.id)}
                             >
                                 <input type={'checkbox'} style={{marginRight:'1rem'}} checked={isChecked} readOnly/>
-                                <p style={{margin:'0', fontSize:'14px'}}>{e.name}</p>
+                                <p style={{margin:'0', fontSize:'14px'}}>
+                                    {e.name}
+                                    {props.clicked?.labels && props.clicked?.labels.length > 0 &&
+                                        <span style={{marginLeft: '2rem', fontSize: '12px', color: '#666'}}>
+                                            {props.clicked.labels.map((path, i) => {
+                                                const val = getNestedValue(e, path);
+                                                return (
+                                                    <span key={i} style={{marginRight:'10px'}}>
+                                                        {val !== undefined && val !== null ? val.toString() : '-'}
+                                                    </span>
+                                                );
+                                            })}
+                                        </span>
+                                    }
+                                </p>
                             </li>
                         )
 

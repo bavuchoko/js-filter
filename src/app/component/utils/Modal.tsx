@@ -49,6 +49,7 @@ const Modal: FC<ModalProps> = (props) => {
                 </>
                 }
 
+
                 <ComponentAllocator {...props}/>
 
             </div>

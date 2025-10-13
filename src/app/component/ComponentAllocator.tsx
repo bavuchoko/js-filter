@@ -5,6 +5,7 @@ import TextSet from "./TextSet";
 import DateSet from "./DateSet";
 import RecursiveSet from "./RecursiveSet";
 import Loading from "./utils/Loading";
+import SearchComponent from "./SearchComponent";
 
 
 const ComponentAllocator:FC<ModalProps> =(props)=>{
@@ -30,7 +31,6 @@ const ComponentAllocator:FC<ModalProps> =(props)=>{
             {! props.loading && ( type==='DATE' &&
                 <DateSet data={props.data} handle={props.handle} values={props.values} clicked={props.clicked} setMessage={props.setMessage}/>
             )}
-
         </>
     )
 }

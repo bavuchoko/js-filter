@@ -75,6 +75,7 @@ export type Condition = {
     type?: Type;
     multiple?:boolean;
     api?:  () => Promise<DataSet>;
+    labels?:string[];
     target?:Target[];
 }
 
@@ -82,6 +83,14 @@ export type Target={
     key: string,
     name: string,
 }
+
+
+export type Search={
+    key: string,
+    label: string,
+    api?:  () => Promise<DataSet>;
+}
+
 
 export type SearchProps ={
     data?:DataSet

@@ -226,3 +226,7 @@ export function findAllParents(
 
     return parents.reverse();
 }
+
+export const getNestedValue = (obj: any, path: string): any => {
+    return path.split('.').reduce((acc, key) => acc?.[key], obj);
+};
