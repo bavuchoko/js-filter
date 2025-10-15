@@ -34,11 +34,11 @@ const JsFilter:FC<FilterProps> =(props)=>{
 
 
     return (
-        <div style={{position:'relative'}}>
+        <div   ref={ref} style={{position:'relative'}}>
             <FilterButton name={'필터'} className={props.className?.button} style={props.style} onClick={toggle}/>
             {isOpen && (
                 <Modal
-                    ref={ref}
+
                     values={values}
                     handle={handle}
                     conditions={props.conditions}
