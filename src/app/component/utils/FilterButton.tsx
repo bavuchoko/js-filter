@@ -4,7 +4,8 @@ import {FilterButtonProps} from "../../type/Types";
 
 const FilterButton:FC<FilterButtonProps> =(props)=>{
     return (
-        <div style={{
+        <div
+            style={{
             display:'inline-flex',
             alignItems:'center',
 
@@ -14,10 +15,11 @@ const FilterButton:FC<FilterButtonProps> =(props)=>{
 
             userSelect:'none',
             borderRadius:'2px',
-            ...props.style?.button}} className={props.className?.button}
+            ...props.style?.button}}
+            className={props.className}
              onClick={props.onClick}
         >
-            <FilterIcon />
+            <FilterIcon style={props.style?.button}/>
             {props.name &&
                 <span style={{display:'inline-block', marginRight:'5px'}}>{props.name}</span>
             }

@@ -1,7 +1,14 @@
-const FilterIcon =()=>{
+import {CSSProperties, FC} from "react";
+
+type IconProps = {
+    style?: CSSProperties;
+}
+const FilterIcon:FC<IconProps> =(props)=>{
     return (
 
-        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3.75 7a.75.75 0 0 1 .75-.75h15a.75.75 0 0 1 0 1.5h-15A.75.75 0 0 1 3.75 7m2.5 5a.75.75 0 0 1 .75-.75h10a.75.75 0 0 1 0 1.5H7a.75.75 0 0 1-.75-.75m3 5a.75.75 0 0 1 .75-.75h4a.75.75 0 0 1 0 1.5h-4a.75.75 0 0 1-.75-.75"/></svg>
+        <svg style={{ width : props.style?.width ?? '24px', height: props.style?.height ?? '24px'}}
+             fill={props.style?.color?? "currentColor"}
+             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3.75 7a.75.75 0 0 1 .75-.75h15a.75.75 0 0 1 0 1.5h-15A.75.75 0 0 1 3.75 7m2.5 5a.75.75 0 0 1 .75-.75h10a.75.75 0 0 1 0 1.5H7a.75.75 0 0 1-.75-.75m3 5a.75.75 0 0 1 .75-.75h4a.75.75 0 0 1 0 1.5h-4a.75.75 0 0 1-.75-.75"/></svg>
 
     )
 }

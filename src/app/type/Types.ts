@@ -20,7 +20,7 @@ type ClassName={
 export type FilterButtonProps = {
     onClick?: (e: any)=>void;
     style?: Style;
-    className?: ClassName;
+    className?: string;
     name?: string;
 }
 

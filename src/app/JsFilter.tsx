@@ -9,7 +9,7 @@ import {useFilterHandle} from "./hook/useFilterHandle";
 
 const JsFilter:FC<FilterProps> =(props)=>{
 
-    const { isOpen, toggle, close } = useToggleModal();
+    const { isOpen, toggle, close, ref } = useToggleModal<HTMLDivElement>();
     const { values, handle, reset, remove } = useFilterHandle(props.onValueChange, props.initialValues);
     const [clicked, setClicked] = useState<Condition| undefined>(undefined);
     const [message, setMessage] =useState<string | undefined>(undefined)
@@ -32,11 +32,13 @@ const JsFilter:FC<FilterProps> =(props)=>{
         fetchData();
     }, [clicked]);
 
+
     return (
         <div style={{position:'relative'}}>
-            <FilterButton name={'필터'} onClick={toggle}/>
+            <FilterButton name={'필터'} className={props.className?.button} style={props.style} onClick={toggle}/>
             {isOpen && (
                 <Modal
+                    ref={ref}
                     values={values}
                     handle={handle}
                     conditions={props.conditions}
