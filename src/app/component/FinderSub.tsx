@@ -24,11 +24,11 @@ const FinderSub:FC<FinderSubProps> =(props)=>{
             : false;
 
 
-    const { handlePointerUp } = usePointerClick({
-        onSingleClick: () => props.onClick?.(props.el.id),
-        onDoubleClick: () => props.doubleClick?.(props.el),
-        delay: 200,
-    });
+    // const { handlePointerUp } = usePointerClick({
+    //     onSingleClick: () => props.onClick?.(props.el.id),
+    //     onDoubleClick: () => props.doubleClick?.(props.el),
+    //     delay: 200,
+    // });
 
     return (
         <div
@@ -44,12 +44,19 @@ const FinderSub:FC<FinderSubProps> =(props)=>{
                     <div style={{width: '15px', height: '15px', display: 'inline-block', marginRight: '5px'}} onClick={() => {
                         props.doubleClick?.(props.el)
                     }}>
-                        <ChevronRight />
+                        {props.belong ?<ChevronDown/>:  <ChevronRight />}
+
                     </div>
                     :
                     <div style={{width: '15px', height: '15px', display: 'inline-block', marginRight: '5px'}}/>
                 }
-                <input type={'checkbox'} style={{marginRight:'1rem'}} checked={isChecked} onPointerUp={handlePointerUp}/>
+                <input type={'checkbox'} style={{marginRight:'1rem'}} checked={isChecked}
+                       // onPointerUp={handlePointerUp}
+                       onClick={()=>{
+                           props.onClick?.(props.el.id)
+                           props.doubleClick?.(props.el)
+                       }}
+                />
             </div>
             <div className={`hover-bg-gray`} style={{
                 width: '100%',
@@ -58,7 +65,11 @@ const FinderSub:FC<FinderSubProps> =(props)=>{
                 textOverflow: 'ellipsis',
                 whiteSpace: 'nowrap'
                 }}
-                 onPointerUp={handlePointerUp}
+                 onClick={()=>{
+                     props.onClick?.(props.el.id)
+                     props.doubleClick?.(props.el)
+                 }}
+                 // onPointerUp={handlePointerUp}
             >{props.el.name}</div>
         </div>
     )
