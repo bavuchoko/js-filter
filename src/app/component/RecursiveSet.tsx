@@ -105,8 +105,9 @@ const RecursiveSet:FC<SearchProps> = (props)=>{
 
     return (
         <div
-            className={`js-filter-righter`}
+            className={`js-filter-righter `}
             style={{ display: "grid",
+                minWidth:'540px',
                 gridTemplateColumns: "repeat(3, minmax(0, 1fr))",}}
         >
             <div style={{

@@ -148,7 +148,7 @@ export const useFilterHandle = (onValueChange?: (value: ValueType | undefined) =
 
     const handle = useCallback(
         (key: string , val: number | string | ObjectType | undefined, type?: Type, multiple? :boolean) => {
-            if (type === undefined ) {
+            if (type === undefined || type === 'RECURSIVE')  {
                 if(multiple) {handleMulti(key, Number(val));
                 }else{handleSingle(key, Number(val));}
             } else if (type === 'DATE') {
@@ -163,7 +163,7 @@ export const useFilterHandle = (onValueChange?: (value: ValueType | undefined) =
 
     const remove = useCallback(
         (key: string , val: number | string | ObjectType | undefined, type?:Type, multiple? :boolean) => {
-            if (type === undefined) {
+            if (type === undefined || type === 'RECURSIVE') {
                 if(multiple) {handleMulti(key, Number(val));
                 }else{handleSingle(key, Number(val));}
             } else if (type === 'DATE') {
