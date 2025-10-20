@@ -103,7 +103,6 @@ export const useFilterHandle = (onValueChange?: (value: ValueType | undefined) =
 
     const handleDate = useCallback(
         (key: string, val: ObjectType| undefined) => {
-            console.log(val)
             setValue(prev => {
                 let newState: ValueType | null;
 
@@ -127,7 +126,6 @@ export const useFilterHandle = (onValueChange?: (value: ValueType | undefined) =
 
     const handlePeriod = useCallback(
         (key: string, val: ObjectType| undefined) => {
-            console.log(val)
             setValue(prev => {
                 let newState: ValueType | null;
 

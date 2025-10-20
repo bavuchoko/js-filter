@@ -73,7 +73,6 @@ const RecursiveSet:FC<SearchProps> = (props)=>{
         const myParents =  findAllParents(flat, el.id);
         setClickLine([...myParents.map(p => p.id), el.id]);
         props.setMessage?.([...myParents.map(p => p.name), el.name].join(' > '));
-        console.log(props.setMessage)
         let parents = left ?? [];
         let sibling = center ?? []
         let children = right ?? [];

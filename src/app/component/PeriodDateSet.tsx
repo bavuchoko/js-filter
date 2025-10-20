@@ -16,7 +16,6 @@ type DateRange = {
 };
 
 const PeriodDateSet:FC<PeriodType> =(props)=>{
-    console.log(props)
     const now = new Date();
 
 
