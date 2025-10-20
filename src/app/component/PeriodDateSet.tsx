@@ -176,7 +176,7 @@ const PeriodDateSet:FC<PeriodType> =(props)=>{
                         );
                     })}
                 </div>
-                {props.clicked?.key && props.values?.[props.clicked.key] &&
+                {props.clicked?.key && props.values?.[props.clicked.key] && props.isStart &&
                     <div style={{height:'30px', width:'20px', marginTop:'auto', cursor:'pointer', fontSize:'13px', color:'#5d5dd3', fontWeight:'bold'}} onClick={()=>props.handleSelect(undefined)}>clear</div>
                 }
             </div>
