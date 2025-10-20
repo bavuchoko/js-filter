@@ -25,6 +25,10 @@ input[type="date"].js-datepicker-input{
     font-size: 14px;
     color: #007ac0;
 }
+.js-datepicker-inRange{
+    background: #9ec8f1 !important;
+    color: #fff;
+}
 .js-datepicker-calendar{
     background: #fff;
     user-select: none;

@@ -125,6 +125,29 @@ export const useFilterHandle = (onValueChange?: (value: ValueType | undefined) =
         [onValueChange]
     );
 
+    const handlePeriod = useCallback(
+        (key: string, val: ObjectType| undefined) => {
+            console.log(val)
+            setValue(prev => {
+                let newState: ValueType | null;
+
+                if (!prev) {
+                    newState = {};
+                } else {
+                    newState = { ...prev };
+                }
+                if (val === undefined) {
+                    delete newState[key];
+                } else {
+                    newState[key] = val;
+                }
+
+                if (onValueChange) onValueChange(newState);
+                return newState;
+            });
+        },
+        [onValueChange]
+    );
 
     const removeDate = useCallback(
         (key: string, val: ObjectType| undefined) => {
@@ -153,6 +176,8 @@ export const useFilterHandle = (onValueChange?: (value: ValueType | undefined) =
                 }else{handleSingle(key, Number(val));}
             } else if (type === 'DATE') {
                 handleDate(key, (val as ObjectType));
+            } else if (type === 'PERIOD') {
+                handlePeriod(key, (val as ObjectType));
             }else if(type === 'TEXT' && typeof val === 'object'){
                 handleText(val);
             }
@@ -168,6 +193,8 @@ export const useFilterHandle = (onValueChange?: (value: ValueType | undefined) =
                 }else{handleSingle(key, Number(val));}
             } else if (type === 'DATE') {
                 removeDate(key, (val as ObjectType));
+            }else if (type === 'PERIOD') {
+                handlePeriod(key, (val as ObjectType));
             } else if(type === 'TEXT' && typeof val === 'object'){
                 handleText(val);
             }

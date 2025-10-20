@@ -20,7 +20,7 @@ const DateSet:FC<SearchProps> =(props)=>{
     // ✅ props.values가 바뀔 때마다 동기화 (부모가 외부에서 업데이트할 수도 있음)
     useEffect(() => {
         if (props.clicked?.key) {
-            const newVal = props.values?.[props.clicked.key];
+            const newVal = props.values?.[props.clicked.key];0
             if (newVal) {
                 const dateVal = new Date(newVal as string);
                 if (!value || value.toDateString() !== dateVal.toDateString()) {
@@ -75,20 +75,20 @@ const DateSet:FC<SearchProps> =(props)=>{
                     <ChevronLeft
                         onClick={() => {
                             if (calendarType === 'MONTH') {
-                                setViewYear((y) => y + 1);
+                                setViewYear((y) => y - 1);
                             } else {
-                                setViewMonth((m) => (m === 11 ? 0 : m + 1));
-                                setViewYear((y) => (viewMonth === 11 ? y + 1 : y));
+                                setViewMonth((m) => (m === 11 ? 0 : m - 1));
+                                setViewYear((y) => (viewMonth === 11 ? y - 1 : y));
                             }
                         }}
                     />
                     <span className="js-datepicker-calendar-month"
                           onClick={() => setCalendarType('MONTH')}
                     >
-                {calendarType ==='MONTH' && <>  {viewYear} </> }
-                        {calendarType ==='DATE' && <> {months[lang][viewMonth]} {viewYear} </> }
+                    {calendarType ==='MONTH' && <>  {viewYear} </> }
+                            {calendarType ==='DATE' && <> {months[lang][viewMonth]} {viewYear} </> }
 
-                </span>
+                    </span>
                     <ChevronRight
                             onClick={() => {
                                 if (calendarType === 'MONTH') {

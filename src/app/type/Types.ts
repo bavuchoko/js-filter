@@ -27,7 +27,10 @@ export type FilterButtonProps = {
 export type ObjectType = {
     [key: string]: string | number;
 };
-
+type Period = {
+    from: Date
+    to:Date
+}
 export type ValueType = {
     [key: string]: string | number | number[] | string[] | undefined | ObjectType ;
 }
@@ -99,4 +102,7 @@ export type SearchProps ={
     handle?: (key: string , val: any, type?:Type, multiple?:boolean) => void;
     setMessage?:(message: string) => void;
 }
-export type Type =  'DATE' | 'TEXT' | 'CODE' | 'RECURSIVE' | undefined;
+
+
+
+export type Type =  'DATE' | 'PERIOD' | 'TEXT' | 'CODE' | 'RECURSIVE' | undefined;

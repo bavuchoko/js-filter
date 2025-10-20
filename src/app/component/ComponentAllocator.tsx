@@ -6,6 +6,7 @@ import DateSet from "./DateSet";
 import RecursiveSet from "./RecursiveSet";
 import Loading from "./utils/Loading";
 import SearchComponent from "./SearchComponent";
+import PeriodSet from "./utils/PeriodSet";
 
 
 const ComponentAllocator:FC<ModalProps> =(props)=>{
@@ -29,7 +30,10 @@ const ComponentAllocator:FC<ModalProps> =(props)=>{
                 <RecursiveSet data={props.data} handle={props.handle} values={props.values} clicked={props.clicked} setMessage={props.setMessage}/>
             )}
             {! props.loading && ( type==='DATE' &&
-                <DateSet data={props.data} handle={props.handle} values={props.values} clicked={props.clicked} setMessage={props.setMessage}/>
+                <DateSet handle={props.handle} values={props.values} clicked={props.clicked} setMessage={props.setMessage}/>
+            )}
+            {! props.loading && ( type==='PERIOD' &&
+               <PeriodSet {...props} />
             )}
         </>
     )
