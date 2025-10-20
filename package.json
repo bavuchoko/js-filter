@@ -1,6 +1,6 @@
 {
   "name": "@bavuchoko/js-filter",
-  "version": "1.0.9",
+  "version": "1.0.11",
   "description": "React Filter component.",
   "main": "dist/index.js",
   "module": "dist/index.js",

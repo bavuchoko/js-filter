@@ -11,17 +11,15 @@ const PeriodSet:FC<SearchProps> =(props)=>{
     };
     const val = props.values?.[props.clicked?.key ?? ""] as Period | undefined;
 
-    const labelRef = useRef<HTMLLabelElement>(null);
 
-    const now = new Date();
-    const [startViewYear, setStartViewYear] = useState(now.getFullYear());
-    const [startViewMonth, setStartViewMonth] = useState(now.getMonth());
-    const nextMonthDate = new Date(startViewYear, startViewMonth + 1);
-    const [endViewYear, setEndViewYear] = useState(nextMonthDate.getFullYear());
-    const [endViewMonth, setEndViewMonth] = useState(nextMonthDate.getMonth());
-
-    const handleSelect = (date: Date) => {
+    const handleSelect = (date: Date | undefined) => {
         if (!props.clicked) return;
+
+        if (!date) {
+            props.handle?.(props.clicked.key, undefined, 'PERIOD');
+            return;
+        }
+
         // val이 없는 경우 대비
         const startOn = val?.startOn;
         const endBy = val?.endBy;
@@ -52,13 +50,9 @@ const PeriodSet:FC<SearchProps> =(props)=>{
         }
 
         // ✅ 결과 전달
-        props.handle?.(props.clicked.key, { startOn: sDate, endBy: eDate }, 'PERIOD');
+        props.handle?.(props.clicked.key, {startOn: sDate, endBy: eDate}, 'PERIOD');
+
     };
-
-    const calendarRef =  useRef<HTMLDivElement>(null);
-
-
-
 
     return (
         <div style={{ flex: 1, display: 'flex', padding:'0 2rem', width:'680px',}}>
