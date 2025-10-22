@@ -46,7 +46,7 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                 top: "100%",
                 zIndex: "100",
                 height: "380px",
-                marginTop: "0.5rem",
+                marginTop: "-0.2rem",
                 left: "0",
                 border: "1px solid #e1e1e1",
                 borderRadius: "4px",
