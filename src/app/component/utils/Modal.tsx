@@ -75,7 +75,7 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
             <Footer
                 data={props.values}
                 reset={props.reset}
-                count={props.data?.content?.length}
+                count={Object.keys(props.values ?? {}).length}
                 message={props.message}
             />
         </div>
