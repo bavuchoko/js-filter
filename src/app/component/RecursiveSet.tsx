@@ -37,9 +37,9 @@ const RecursiveSet:FC<SearchProps> = (props)=>{
             }
             setCenter(sibling)
             setLeft(parents)
-
         }else{
-
+            setLeft(sibling)
+            setCenter(el.children)
         }
 
     }
@@ -64,6 +64,7 @@ const RecursiveSet:FC<SearchProps> = (props)=>{
         }else{
 
         }
+
         setCenter(sibling)
         setLeft(parents)
         setRight(children)
@@ -79,6 +80,7 @@ const RecursiveSet:FC<SearchProps> = (props)=>{
 
         if(el.parentId){
             const parent = flat.find(e => e.id === el.parentId)
+
             if(parent) {
                 if(el.children){
                     parents = flat.filter(e => e.parentId === parent.parentId)
@@ -93,7 +95,6 @@ const RecursiveSet:FC<SearchProps> = (props)=>{
             }
         }
     }
-
     useEffect(() => {
         setLeft(props?.data?.content)
     }, [props.data?.content]);
