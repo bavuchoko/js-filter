@@ -24,6 +24,13 @@ export type FilterButtonProps = {
     name?: string;
 }
 
+export type IconProps = {
+    style?: React.CSSProperties;
+    label?: string;
+    className?: string;
+    onClick?: (e: any)=>void;
+}
+
 export type ObjectType = {
     [key: string]: string | number;
 };
