@@ -1,8 +1,8 @@
 import {FC} from "react";
-import ChevronDown from "./svg/ChevronDown";
-import ChevronRight from "./svg/ChevronRight";
-import {usePointerClick} from "../hook/usePointerClick";
 import {Condition, ValueType} from "../type/Types";
+import FolderOpen from "./svg/FolderOpen";
+import FolderClose from "./svg/FolderClose";
+import File from "./svg/File";
 
 
 type FinderSubProps = {
@@ -40,15 +40,17 @@ const FinderSub:FC<FinderSubProps> =(props)=>{
                 : !props.belong ? 'white' : '#e0e8f5'
         }} className={'no-drag'}>
             <div style={{cursor: 'pointer', display:'flex'}} className={`hover-circle`}>
-                {props.el.children ?
+                {props.el.children?.length > 0 ?
                     <div style={{width: '15px', height: '15px', display: 'inline-block', marginRight: '5px'}} onClick={() => {
                         props.doubleClick?.(props.el)
                     }}>
-                        {props.belong ?<ChevronDown/>:  <ChevronRight />}
+                        {props.belong ?<FolderOpen />:  <FolderClose />}
 
                     </div>
                     :
-                    <div style={{width: '15px', height: '15px', display: 'inline-block', marginRight: '5px'}}/>
+                    <div style={{width: '15px', height: '15px', display: 'inline-block', marginRight: '5px', textAlign:'center'}}>
+                        <File />
+                    </div>
                 }
                 <input type={'checkbox'} style={{marginRight:'1rem'}} checked={isChecked}
                        // onPointerUp={handlePointerUp}
